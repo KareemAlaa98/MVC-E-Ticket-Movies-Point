@@ -1,0 +1,54 @@
+﻿@model MoviesViewModel
+@{
+    SelectList listofCategories = new SelectList(ViewBag.listofCategories, "Id", "Name");
+    SelectList listofCinemas = new SelectList(ViewBag.listofCinemas, "Id", "Name");
+    SelectList listofActors = new SelectList(ViewBag.listofActors, "Id", "FullName");
+}
+
+<form asp-controller="Movies" asp-action="@ViewData["action"]" method="post" class="form-control mt-4">
+    <input asp-for="Id" class="form-control" type="hidden" />
+
+    <Label for="name">Movie Name:</Label>
+    <input asp-for="Name" id="name" class="form-control" />
+    <div><span asp-validation-for="Name" class="text-danger"></span></div>
+
+    <Label for="price">Price:</Label>
+    <input asp-for="Price" id="price" class="form-control" />
+    <div><span asp-validation-for="Price" class="text-danger"></span></div>
+
+    <Label for="desc">Description:</Label>
+    <input asp-for="Description" id="desc" class="form-control" />
+    <div><span asp-validation-for="Description" class="text-danger"></span></div>
+
+    <Label for="img">Movie Poster:</Label>
+    <input asp-for="ImgUrl" id="img" class="form-control" type="file" />
+    <div><span asp-validation-for="ImgUrl" class="text-danger"></span>
+    
+    <Label for="trailer">Movie Trailer Url:</Label>
+    <input asp-for="TrailerUrl" id="trailer" class="form-control" />
+    <div><span asp-validation-for="TrailerUrl" class="text-danger"></span></div>
+
+    <Label for="category">Category:</Label>
+    <select asp-for="CategoryId" asp-items="listofCategories" id="category" class="form-control"></select>
+    <div><span asp-validation-for="CategoryId" class="text-danger"></span></div>
+
+    <Label for="cinema">Cinema:</Label>
+    <select asp-for="CinemaId" asp-items="listofCinemas" id="cinema" class="form-control"></select>
+    <div><span asp-validation-for="CinemaId" class="text-danger"></span></div>
+
+    <Label for="startdate">Start Date:</Label>
+    <input asp-for="StartDate" id="startdate" class="form-control" />
+    <div></div><span asp-validation-for="StartDate" class="text-danger"></span></div>
+
+    <Label for="enddate">End Date:</Label>
+    <input asp-for="EndDate" id="enddate" class="form-control" />
+   <div> <span asp-validation-for="EndDate" class="text-danger" ></span></div>
+
+    <Label for="actors">Actors:</Label>
+    <select asp-for="MovieActors" asp-items="listofActors" id="actors" class="form-control" multiple></select>
+    <div><span asp-validation-for="MovieActors" class="text-danger"></span></div>
+
+    <br />
+    <button type="submit" class="btn btn-primary">Submit</button>
+
+</form>

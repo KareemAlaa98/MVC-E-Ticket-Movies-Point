@@ -1,0 +1,12 @@
+﻿@model CategoryViewModel
+
+<form asp-controller="Categories" asp-action="@ViewData["action"]" method="post">
+    <input asp-for="Id" type="hidden" />
+
+    <label for="name">Category Name:</label>
+    <input asp-for="Name" id="name" class="form-control" />
+    <span asp-validation-for="Name" class="text-danger"></span>
+
+    <br />
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>

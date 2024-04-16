@@ -1,0 +1,34 @@
+﻿@model List<Movie>
+
+<h2 class="text-center">Your Tickets Cart</h2>
+@{
+    double total = 0;
+}
+
+@foreach (var item in Model)
+{
+    total += item.Price;
+    <div class="card mb-3 " style="width: 1000px; height:210px; border-radius:20px">
+        <div class="row no-gutters">
+            <div class="col-3" >
+                <img src="/images/movies/@item.ImgUrl" class="card-img" alt="..." style="height:200px; object-fit:contain">
+            </div>
+            <div class="col-8">
+                <div class="card-body">
+                    <h5 class="card-title">@item.Name</h5>
+                    <p class="card-text">$@item.Price</p>
+                    <p class="card-text"><small class="text-muted">@item.Description</small></p>
+                </div>
+            </div>
+                <a href="/movies/RemoveFromCart/@item.Id" class="col-1 mt-3 text-danger">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                        <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0" />
+                    </svg>
+                </a>
+        </div>
+    </div>
+}
+
+<h4 class="text-center">Total: $@total.ToString("F2")</h4>
+<div class="text-center"><a class="btn btn-outline-primary mb-2 mt-1" href="/movies">Back to All Movies</a></div>
+<div class="text-center"><a class="btn btn-success mt-1" href="/movies/SendEmail">Confirm Registration and Pay Now</a></div>

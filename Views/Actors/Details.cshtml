@@ -1,0 +1,11 @@
+﻿@model Actor
+
+<div class="card mt-5">
+    <div class="card-body">
+    <img src="/images/cast/@Model.ProfilePicture" />
+        <h5 class="card-title">@Model.FirstName @Model.LastName</h5>
+        <p class="card-text">@Model.Bio</p>
+        <a href="https://www.instagram.com" target="_blank" class="btn btn-primary">Social Media</a>
+        <a href="/actors/movies/@Model.Id"  class="btn btn-primary">Movies</a>
+    </div>
+</div>

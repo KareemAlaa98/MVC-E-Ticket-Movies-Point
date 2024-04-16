@@ -1,0 +1,13 @@
+﻿@if (Model.Count > 0)
+{
+    <partial name="_DisplayMoviesPartial"></partial>
+}
+else
+{
+    <div class="alert alert-danger mt-5" role="alert">
+        <h4 class="alert-heading">No Results Found!</h4>
+        <p>We couldn't find a matching result to your search. Please try again with a different keyword or refine your search criteria.</p>
+        <hr>
+        <p>If you still couldn't find what you're searching for, try checking similar movies from our Categories, Actors, or Cinemas sections.</p>
+    </div>
+}

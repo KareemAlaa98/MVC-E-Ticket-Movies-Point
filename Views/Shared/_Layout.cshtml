@@ -1,0 +1,102 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Movies_Point</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Movies_Point.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light mb-3" style="background: #0f0c29; /* fallback for old browsers */ background: -webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29); /* Chrome 10-25, Safari 5.1-6 */ background: linear-gradient(to right, #24243e, #302b63, #0f0c29); color: #ffffff;">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand ms-5" asp-controller="Home" asp-action="Index"><img src="/images/logo.png" style="width:100px" /></a>
+            @* <a class="navbar-brand text-light" asp-controller="Home" asp-action="Index">Movie Point</a> *@
+
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                    <li class="nav-item active">
+                        <a class="nav-link text-light" asp-area="" asp-controller="Movies" asp-action="Index">Movies</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link text-light" asp-area="" asp-controller="Categories" asp-action="Index">Categories</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link text-light" asp-area="" asp-controller="Actors" asp-action="Index">Actors</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link text-light " asp-area="" asp-controller="Cinemas" asp-action="Index">Cinemas</a>
+                    </li>
+                </ul>
+                @if (User.IsInRole("Admin"))
+                {
+                    <div class="dropdown ms-3">
+                        <button class="btn btn-outline-light dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Add a New
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" asp-controller="Movies" asp-action="Create">Movie</a>
+                            <a class="dropdown-item" asp-controller="Categories" asp-action="Create">Category</a>
+                        </div>
+                    </div>
+                }
+                <div class="ms-auto">
+                    <form class="form-inline my-2 my-lg-0" asp-controller="Search" asp-action="Index">
+                        <div class="input-group">
+                            <input class="form-control" type="search" name="search" placeholder="Search for a movie" aria-label="Search">
+                            <div class="input-group-append ms-1">
+                                <button class="btn btn-outline-success" type="submit">Search </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <ul class="navbar-nav mx-5 mt-2 mt-lg-0">
+                   @if(User.Identity.IsAuthenticated)
+                   {
+                       <li class="nav-item active mx-2">
+                           <a class="nav-link text-light" asp-area="">Welcome @User.Identity.Name</a>
+                       </li>
+                        @if (User.IsInRole("User")){
+                            <li class="nav-item active mx-1">
+                                <a class="nav-link text-light" asp-area="" asp-controller="Movies" asp-action="Cart">Cart</a>
+                            </li>
+                        }
+                        <li class="nav-item active mx-1">
+                           <a class="nav-link text-light" asp-area="" asp-controller="Account" asp-action="Logout">Logout</a>
+                       </li> 
+                       
+                   }
+                   else
+                   {
+                       <li class="nav-item active mx-2">
+                           <a class="nav-link text-light" asp-area="" asp-controller="Account" asp-action="Registration">SignUp</a>
+                       </li>
+                       <li class="nav-item active mx-1">
+                           <a class="nav-link text-light" asp-area="" asp-controller="Account" asp-action="Login">Login</a>
+                       </li>
+                   }
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2024 - Movies_Point - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
